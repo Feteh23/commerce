@@ -1,8 +1,15 @@
+import 'dart:ffi';
+
+import 'package:e_commerce/home_pages.dart/dashboard.dart';
+import 'package:e_commerce/payment_pages.dart/payment_method.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/payment_pages.dart/your_cart.dart';
 import 'package:e_commerce/payment_pages.dart/your_cart2.dart';
 import 'package:e_commerce/payment_pages.dart/checkouts.dart';
 import 'package:e_commerce/payment_pages.dart/checkouts3.dart';
+
+
+ final Color primaryColor = Color.fromARGB(255, 68, 177, 144);
 
 class Resources extends StatefulWidget {
   const Resources({super.key});
@@ -12,6 +19,7 @@ class Resources extends StatefulWidget {
 }
 
 class _ResourcesState extends State<Resources> {
+  
   bool _ischecked = false;
   bool _istouched = false;
   bool _isfelt = false;
@@ -30,8 +38,8 @@ Bigcontainer({required this.image,
       final screenH = MediaQuery.sizeOf(context).height;
       final screenW = MediaQuery.sizeOf(context).width;
       return Container(
-        height: screenH*0.2,
-        width: screenW*0.8,
+        height: screenH*0.17,
+        width: screenW*0.78,
         child: Image(image: AssetImage(image), fit: BoxFit.fill,),
       );
     }
@@ -75,7 +83,7 @@ mediumcontainer({
         children: [
           Container(
             height: screenH*0.15,
-            width: screenW*0.43,
+            width: screenW*0.41,
             child: Image(image: AssetImage(logo), fit: BoxFit.fill,),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10)
@@ -83,17 +91,19 @@ mediumcontainer({
           ),
           Text(text, style: TextStyle(fontSize: 13, color: Colors.black),),
           Text(word, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),),
-          SizedBox(height: screenH*0.02,),
+          SizedBox(height: screenH*0.01,),
           
         Container(
-       height: screenH*0.05,
+       height: screenH*0.038,
 
        width:screenW*0.4,
        decoration:BoxDecoration(
-        color: Color.fromARGB(255, 44, 209, 193),
-        borderRadius: BorderRadius.circular(8),
+        color: primaryColor,
+        borderRadius: BorderRadius.circular(5),
        ) ,
-       child: Center(child: TextButton(onPressed: (){}, child: Text('Add to Cart', style: TextStyle(color: Colors.white),))),
+       child: Center(child: TextButton(onPressed: (){
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=> your_cart()));
+       }, child: Text('Add to Cart', style: TextStyle(color: Colors.white),))),
         )
         ],
       );
@@ -151,99 +161,131 @@ required this.text,
       );
     }
 }
-class container1 {
-  final String logo;
-  final String text;
-  final String word;
-  final String text2;
-container1({
-  required this.logo,
- required this.text,
-  required this.word,
-  required this.text2,  
-    });
-    Widget build(BuildContext context){
-      final screenH = MediaQuery.sizeOf(context).height;
-      final screenW = MediaQuery.sizeOf(context).width;
-      return Row(
-        children: [
-        Container(
-            height: screenH*0.09,
-            width: screenW*0.27,
-            child: Image(image: AssetImage(logo), fit: BoxFit.fill,),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10)
-            ),
-          ),
-           SizedBox(width: MediaQuery.sizeOf(context).width*0.021,),
-          Column(
+
+void ShowDialog(BuildContext context){
+  showModalBottomSheet(context: context, isScrollControlled:true, builder: (context){
+    return Container(
+        height: MediaQuery.sizeOf(context).height*0.42,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(topRight: Radius.circular(25), topLeft: Radius.circular(25))
+        ),
+          child:  Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 130),
-                child: Text(word, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+                padding: const EdgeInsets.only(top: 20),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20,),
+                      child: Text('Select the delivery', style: TextStyle(fontWeight: FontWeight.bold),),
+                    ),
+                     SizedBox(width: MediaQuery.sizeOf(context).height*0.24,),
+                      IconButton(onPressed: (){
+                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=> Checkouts()));
+                }, icon: Icon(Icons.close),)
+                     
+                  ],
+                ),
               ),
-               Padding(
-                 padding: const EdgeInsets.only(right: 205),
-                 child: Text(text, style: TextStyle(fontSize: 11, color: Colors.grey),),
-               ),
-         Padding(
-          padding: const EdgeInsets.only(right: 85),
-          child: Row(
-            children: [
-                Padding(
-            padding: const EdgeInsets.only(right:60),
-            child: Text(text2, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
-          ),
-        Container(
-          height: 20,
-          width: 20,
-          decoration: BoxDecoration(
-            border: Border.all(width: 1, color: const Color.fromARGB(255, 205, 204, 204)),
-            borderRadius: BorderRadius.circular(400),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 6,),
-            child: Text('-', style: TextStyle(fontSize: 16,),),
-          ),
-        ),
-         SizedBox(width: MediaQuery.sizeOf(context).width*0.01,),
-        Text('1'),
-         SizedBox(width: MediaQuery.sizeOf(context).width*0.01,),
-         Container(
-          height: 20,
-          width: 20,
-          decoration: BoxDecoration(
-            border: Border.all(width: 1, color: Color.fromARGB(255, 205, 204, 204)),
-            borderRadius: BorderRadius.circular(400),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 6),
-            child: Text('+', style: TextStyle(fontSize: 15,),),
-          ),
-        ),
-         SizedBox(width: MediaQuery.sizeOf(context).width*0.01,),
-         Container(
-          height: 20,
-          width: 20,
-          decoration: BoxDecoration(
-            border: Border.all(width: 1, color: Color.fromARGB(255, 205, 204, 204)),
-            borderRadius: BorderRadius.circular(400),
-          ),
-          child: Icon(Icons.delete_forever_outlined, color: Colors.grey, size: 15,),
-         ),
+               SizedBox(height: MediaQuery.sizeOf(context).height*0.01,),
+               container5(text: 'Express', word: '1-3 days delivery', text2: '\$14,99').build(context),
+                SizedBox(height: MediaQuery.sizeOf(context).height*0.01,),
+               container5(text: 'Regular', word: '2-4 days delivery', text2: '\$7,99').build(context),
+                SizedBox(height: MediaQuery.sizeOf(context).height*0.01,),
+               container5(text: 'Cargo', word: '7-14 days delivery', text2: '\$2,99').build(context),
             ],
-          ),
+           ),
+    );
+
+    
+  }
+  
+  );
+}
+void ShowCongrat(BuildContext context){
+  showModalBottomSheet(context: context, isScrollControlled:true, builder: (context){
+    return Container(
+      height: MediaQuery.sizeOf(context).height*0.6,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(topRight: Radius.circular(25), topLeft: Radius.circular(25))
         ),
-        
- 
-            ],
-          ),
-        //  SizedBox(width: screenW*0.05,),
+      child: Stack(
+          children: [
           
-              ],
-      );
-                
-    }
+            Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only( left: 320),
+                    child:  IconButton(onPressed: (){
+                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=> Payment_Method()));
+                }, icon: Icon(Icons.close),),
+                  ),
+                   SizedBox(height: MediaQuery.sizeOf(context).width*0.04,), 
+                   Image.asset('assets/star.jpg',height: MediaQuery.sizeOf(context).height*0.18,),
+                   SizedBox(height: MediaQuery.sizeOf(context).width*0.04,), 
+                   Text('Congratulations your payment',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                    Text('is successfully',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                     SizedBox(height: MediaQuery.sizeOf(context).width*0.035,), 
+                   Text('Track your order or just chat directly to the ',style: TextStyle(fontSize: 13,color: Colors.grey ),),
+                    Text('seller. Download order summary in down below',style: TextStyle(fontSize: 13, color: Colors.grey),),
+                    SizedBox(height: MediaQuery.sizeOf(context).width*0.055,), 
+                   Container(
+              height: MediaQuery.sizeOf(context).height*0.055,
+              width:MediaQuery.sizeOf(context).width*0.7,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(width: 1, color: Color.fromARGB(255, 211, 210, 210)),
+              ),
+              child: Center(child: Row(
+                children: [
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15, top: 2),
+                          child: Icon(Icons.sim_card,  color: Colors.black, size: 15,),
+                        ),
+                         SizedBox(width: MediaQuery.sizeOf(context).width*0.01,),
+                       
+                       Text('Order_invoice'),
+                         SizedBox(width: MediaQuery.sizeOf(context).height*0.12,),
+                    Icon(Icons.download,size: 25, color: Colors.black,),
+                      ],
+                    ),
+                  ),
+                ],
+              )),
+                        ),
+              SizedBox(height: MediaQuery.sizeOf(context).width*0.09,),
+               Padding(
+                 padding: const EdgeInsets.only(left: 20),
+                 child: Container(
+                             height: MediaQuery.sizeOf(context).height*0.055,
+                             width: MediaQuery.sizeOf(context).width*0.9,
+                             decoration: BoxDecoration(
+                  color: primaryColor,
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(width: 1, color: primaryColor,),
+                             ),
+                             child: Center(child: TextButton(onPressed: (){
+                               Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=> Dashboard()));
+                             }, child: Text('Continue',style: TextStyle(color: Colors.white),))),
+                           ),
+               ),
+                ],
+              ),
+            ),
+          ],
+        ),
+    );
+ 
+  }
+  
+  );
 }
 class container3 {
   final String text;
@@ -265,9 +307,12 @@ required this.text,
             child: Center(child: Row(
               children: [
                 TextButton(onPressed: (){
+
                 }, child: Text(text,style: TextStyle(color:Color.fromARGB(255, 211, 210, 210)),)),
-                 SizedBox(width: MediaQuery.sizeOf(context).height*0.14,),
-                Icon(Icons.arrow_forward_ios,size: 15,)
+                 SizedBox(width: MediaQuery.sizeOf(context).height*0.12,),
+                IconButton(onPressed: (){
+                  ShowDialog(context);
+                }, icon: Icon(Icons.arrow_forward_ios,size: 15,))
               ],
             )),
           ),
@@ -406,7 +451,7 @@ required this.text,
               child:Padding(
                             padding: const EdgeInsets.only(left: 15),
                             child: TextField(
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.datetime,
                               decoration: InputDecoration(
                                 hintText: text,
                                 hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
@@ -480,4 +525,85 @@ required this.style,
         ],
       );
     }
+}
+class Checkcontainers extends StatefulWidget {
+  
+   final String logo;
+  final String text;
+  final String word;
+  final String text2;
+
+  Checkcontainers({
+   required this.logo,
+ required this.text,
+  required this.word,
+  required this.text2,
+  });
+  @override
+  State<Checkcontainers> createState() => _CheckcontainersState();
+}
+
+class _CheckcontainersState extends State<Checkcontainers> {
+  int _counter = 1;
+  void _decrementCounter (){
+    setState(() {
+      if(_counter > 1){
+        _counter--;
+      }
+    });
+  }
+  void _incrementCounter (){
+    setState(() {
+      _counter++;
+    });
+  }
+  bool _ischecked = false;
+  @override
+  Widget build(BuildContext context) {
+   final screenH = MediaQuery.sizeOf(context).height;
+      final screenW = MediaQuery.sizeOf(context).width;
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          IconButton(onPressed: (){
+            setState(() {
+              _ischecked = !_ischecked;
+            });
+          }, icon: Icon(_ischecked? Icons.check_box : Icons.check_box_outline_blank, color: _ischecked? primaryColor:Colors.grey, size: 30,)),
+          Container(
+            height: screenH*0.11,
+            width: screenW*0.24,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              image: DecorationImage(image: AssetImage(widget.logo), fit: BoxFit.fill),
+            ),
+          ),
+          SizedBox(
+            width: MediaQuery.sizeOf(context).width*0.02,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(widget.text, style: TextStyle(fontWeight: FontWeight.bold),),
+              Text(widget.word),
+              Row(
+                children: [
+                  Text(widget.text2, style: TextStyle(fontWeight: FontWeight.bold),),
+                  TextButton(onPressed: (){
+                    _decrementCounter();
+                  }, child: Text('-', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),)),
+                  Text('$_counter'),
+                  TextButton(onPressed: (){
+                    _incrementCounter();
+                  }, child: Text('+')),
+                  IconButton(onPressed: (){}, icon: Icon(Icons.delete_outline,size: 20,)),
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }

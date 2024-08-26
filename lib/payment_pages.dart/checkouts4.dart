@@ -83,7 +83,7 @@ class _Checkouts4State extends State<Checkouts4> {
               ),
             ) ,
             SizedBox(height: MediaQuery.sizeOf(context).height*0.02,),
-            Text('Hide List', style: TextStyle(color: Color.fromARGB(255, 32, 230, 183)),),
+            Text('Hide List', style: TextStyle(color: primaryColor),),
              SizedBox(height: MediaQuery.sizeOf(context).height*0.025,),
              container3(text: 'Regular(2-4 days delivery)').build(context),
 
@@ -121,9 +121,9 @@ class _Checkouts4State extends State<Checkouts4> {
             height: MediaQuery.sizeOf(context).height*0.055,
             width: MediaQuery.sizeOf(context).width*0.9,
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 7, 223, 187),
+              color: primaryColor,
               borderRadius: BorderRadius.circular(5),
-              border: Border.all(width: 1, color: Color.fromARGB(255, 7, 223, 187),),
+              border: Border.all(width: 1, color: primaryColor,),
             ),
             child: Center(child: TextButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=> Payment_Method()));
@@ -131,9 +131,7 @@ class _Checkouts4State extends State<Checkouts4> {
           ),
         ],
       ),
- 
- 
- 
+       resizeToAvoidBottomInset: true,
     );
   }
 }

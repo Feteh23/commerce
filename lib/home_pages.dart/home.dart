@@ -16,7 +16,7 @@ class Home extends StatelessWidget {
           Padding(
             
             padding: const EdgeInsets.only(right: 230,top: 10),
-            child: Text('Delivery address', style: TextStyle(color: Colors.grey, fontSize: 13),),
+            child: Text('Delivery address', style: TextStyle(color: Colors.grey, fontSize: 11),),
           ),
           Row(
             children: [
@@ -83,32 +83,32 @@ class Home extends StatelessWidget {
               child: Row(
                 children: [
                   Bigcontainer(image: 'assets/card.jpg').build(context),
-                  SizedBox(width: MediaQuery.sizeOf(context).width*0.03,),
+                  SizedBox(width: MediaQuery.sizeOf(context).width*0.015,),
                   Bigcontainer(image: 'assets/card.jpg').build(context),
                 ],
               ),
             ),
           ),
-          SizedBox(height: MediaQuery.sizeOf(context).height*0.04,),
+          SizedBox(height: MediaQuery.sizeOf(context).height*0.02,),
           Padding(
-            padding: const EdgeInsets.only(right: 255),
+            padding: const EdgeInsets.only(right: 280),
             child: Text('Category', style: TextStyle(fontWeight: FontWeight.w400),),
           ),
-           SizedBox(height: MediaQuery.sizeOf(context).height*0.01,),
+           SizedBox(height: MediaQuery.sizeOf(context).height*0.02,),
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 30, right: 20),
             child: Row(
               children: [
                 Smallcontainer(logo: 'assets/clothes.jpg', text: 'Apperel').build(context),
-            SizedBox(width: MediaQuery.sizeOf(context).width*0.053,),
+            SizedBox(width: MediaQuery.sizeOf(context).width*0.054,),
              Smallcontainer(logo: 'assets/rulers.jpg', text: 'School').build(context),
-            SizedBox(width: MediaQuery.sizeOf(context).width*0.053,),
+            SizedBox(width: MediaQuery.sizeOf(context).width*0.054,),
              Smallcontainer(logo: 'assets/ball.jpg', text: 'Sports').build(context),
-            SizedBox(width: MediaQuery.sizeOf(context).width*0.053,),
+            SizedBox(width: MediaQuery.sizeOf(context).width*0.054,),
              Smallcontainer(logo: 'assets/tele.jpg', text: 'Electronics').build(context),
-            SizedBox(width: MediaQuery.sizeOf(context).width*0.053,),
+            SizedBox(width: MediaQuery.sizeOf(context).width*0.054,),
              Smallcontainer(logo: 'assets/buttons.jpg', text: 'All').build(context),
-            SizedBox(width: MediaQuery.sizeOf(context).width*0.053,),
+            SizedBox(width: MediaQuery.sizeOf(context).width*0.054,),
               ],
             ),
           ),
@@ -145,18 +145,18 @@ class Home extends StatelessWidget {
             child: Row(
               children: [
                 mediumcontainer(logo: 'assets/tv.jpg', text: 'Monitor LG 22"inc 4k..', word: '\$199.99').build(context),
-                 SizedBox(width: MediaQuery.sizeOf(context).width*0.04,),
-            mediumcontainer(logo: 'assets/cup.jpg', text: 'Monitor LG 22"inc 4k..', word: '\$199.99').build(context),
+                 SizedBox(width: MediaQuery.sizeOf(context).width*0.014,),
+            mediumcontainer(logo: 'assets/cup.jpg', text: 'Aestechic Mug -white...', word: '\$199.99').build(context),
               ],
             ),
           ),
-           SizedBox(height: MediaQuery.sizeOf(context).height*0.013,),
+           SizedBox(height: MediaQuery.sizeOf(context).height*0.016,),
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Row(
               children: [
                 mediumcontainer(logo: 'assets/ear pot.jpg', text: 'Monitor LG 22"inc 4k..', word: '\$199.99').build(context),
-                 SizedBox(width: MediaQuery.sizeOf(context).width*0.04,),
+                 SizedBox(width: MediaQuery.sizeOf(context).width*0.014,),
             mediumcontainer(logo: 'assets/console.jpg', text: 'Monitor LG 22"inc 4k..', word: '\$199.99').build(context),
               ],
             ),
@@ -164,6 +164,7 @@ class Home extends StatelessWidget {
         ],
        ),
      ),
+      resizeToAvoidBottomInset: true,
     );
   }
 }

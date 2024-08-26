@@ -12,7 +12,7 @@ class History extends StatelessWidget {
         toolbarHeight: 70,
         title: Row(
           children: [
-            IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back)),
+            //IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back)),
             SizedBox(width: MediaQuery.sizeOf(context).width*0.165,),
             Text('Details Product', style: TextStyle(fontSize: 16),),
              SizedBox(width: MediaQuery.sizeOf(context).width*0.165,),
@@ -86,6 +86,10 @@ class History extends StatelessWidget {
                 
                 ),
               ),
+                Divider(
+              thickness: 1, 
+             color: Colors.grey[200],
+            ),  
               Padding(
                 padding: const EdgeInsets.only(top: 20, left: 20),
                 child: Row(
@@ -150,7 +154,7 @@ class History extends StatelessWidget {
           ],
         ),
       ),
-
+ resizeToAvoidBottomInset: true,
     );
 
   }

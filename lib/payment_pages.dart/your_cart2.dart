@@ -17,7 +17,7 @@ class _Your_Cart2State extends State<Your_Cart2> {
     bool _isfelt = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
         appBar: AppBar(
         toolbarHeight: 70,
         title: Row(
@@ -60,46 +60,12 @@ class _Your_Cart2State extends State<Your_Cart2> {
               thickness: 1, 
              color: Colors.grey[200],
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      IconButton(onPressed: (){
-                        setState(() {
-                          _ischecked = !_ischecked;
-                        });
-                      }, icon:Icon(_ischecked? Icons.check_box : Icons.check_box_outline_blank, color: _ischecked? Color.fromARGB(255, 4, 218, 182): Colors.grey, size: 30,)),
-                      container1(logo: 'assets/white head phone.jpg', text: 'Variant: Grey', word: 'Air pods max by Apple', text2: '\$1999,9').build(context),
-                    ],
-                  ),
-                  SizedBox(height: MediaQuery.sizeOf(context).width*0.06,),
-                   Row(
-                    children: [
-                      IconButton(onPressed: (){
-                        setState(() {
-                          _istouched = !_istouched;
-                        });
-                      }, icon:Icon(_istouched? Icons.check_box : Icons.check_box_outline_blank, color: _istouched? Color.fromARGB(255, 4, 218, 182): Colors.grey, size: 30,)),
-                      container1(logo: 'assets/tv.jpg', text: 'Variant: Grey', word: 'Air pods max by Apple', text2: '\$1999,9').build(context),
-                    ],
-                  ),
-                  SizedBox(height: MediaQuery.sizeOf(context).width*0.06,),
-                   Row(
-                    children: [
-                      IconButton(onPressed: (){
-                        setState(() {
-                          _isfelt = !_isfelt;
-                        });
-                      }, icon:Icon(_isfelt? Icons.check_box : Icons.check_box_outline_blank, color: _isfelt? Color.fromARGB(255, 4, 218, 182): Colors.grey, size: 30,)),
-                      container1(logo: 'assets/brown head phone.jpg', text: 'Variant: Grey', word: 'Air pods max by Apple', text2: '\$1999,9').build(context),
-                    ],
-                  ),
-                ],
-              ),
-            ) ,
-             SizedBox(height: MediaQuery.sizeOf(context).height*0.28,),
+ Checkcontainers(logo: 'assets/white head phone.jpg', text: 'Air pods max by apple', word:'variant: Grey', text2:'\$1999,99'),
+            SizedBox(height: MediaQuery.sizeOf(context).width*0.05,),
+            Checkcontainers(logo: 'assets/tv.jpg', text: 'Monitor LG 22" inc 4k 120Fps', word:'variant:120Fps', text2:'\$299,99'),
+            SizedBox(height: MediaQuery.sizeOf(context).width*0.05,),
+            Checkcontainers(logo: 'assets/brown head phone.jpg', text: 'Earphones for monitor', word:'variant: Combo', text2:'\$199,99'),
+             SizedBox(height: MediaQuery.sizeOf(context).height*0.25,),
                    Divider(
               thickness: 1, 
              color: Colors.grey[200],
@@ -129,9 +95,9 @@ class _Your_Cart2State extends State<Your_Cart2> {
             height: MediaQuery.sizeOf(context).height*0.055,
             width: MediaQuery.sizeOf(context).width*0.9,
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 7, 223, 187),
+              color: primaryColor,
               borderRadius: BorderRadius.circular(5),
-              border: Border.all(width: 1, color: Color.fromARGB(255, 7, 223, 187),),
+              border: Border.all(width: 1, color: primaryColor,),
             ),
             child: Center(child: TextButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=> Checkouts()));
@@ -139,7 +105,7 @@ class _Your_Cart2State extends State<Your_Cart2> {
           ),
         ],
       ),
- 
+  resizeToAvoidBottomInset: true,
     );
   }
 }

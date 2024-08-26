@@ -2,7 +2,7 @@ import 'package:e_commerce/resources.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:e_commerce/payment_pages.dart/congrat.dart';
+
 
 class Payment_Method extends StatefulWidget {
   const Payment_Method({super.key});
@@ -241,16 +241,17 @@ class _Payment_MethodState extends State<Payment_Method> {
             height: MediaQuery.sizeOf(context).height*0.055,
             width: MediaQuery.sizeOf(context).width*0.9,
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 7, 223, 187),
+              color: primaryColor,
               borderRadius: BorderRadius.circular(5),
-              border: Border.all(width: 1, color: Color.fromARGB(255, 7, 223, 187),),
+              border: Border.all(width: 1, color: primaryColor,),
             ),
             child: Center(child: TextButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=> Congrat()));
+             ShowCongrat(context);
             }, child: Text('Select payment method',style: TextStyle(color: Colors.white),))),
           ), 
         ],
       ),
+       resizeToAvoidBottomInset: true,
     );
   }
 }

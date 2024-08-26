@@ -140,14 +140,14 @@ class Congrat extends StatelessWidget {
                   child: Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 15, top: 10),
-                        child: Icon(Icons.book,  color: Colors.grey, size: 15,),
+                        padding: const EdgeInsets.only(left: 15, top: 2),
+                        child: Icon(Icons.sim_card,  color: Colors.black, size: 15,),
                       ),
                        SizedBox(width: MediaQuery.sizeOf(context).width*0.01,),
                      
                      Text('Order_invoice'),
                        SizedBox(width: MediaQuery.sizeOf(context).height*0.12,),
-                  Icon(Icons.download,size: 25, color: Colors.grey,),
+                  Icon(Icons.download,size: 25, color: Colors.black,),
                     ],
                   ),
                 ),
@@ -155,22 +155,26 @@ class Congrat extends StatelessWidget {
             )),
           ),
             SizedBox(height: MediaQuery.sizeOf(context).width*0.09,),
-             Container(
-            height: MediaQuery.sizeOf(context).height*0.055,
-            width: MediaQuery.sizeOf(context).width*0.9,
-            decoration: BoxDecoration(
-              color: Color.fromARGB(255, 7, 223, 187),
-              borderRadius: BorderRadius.circular(5),
-              border: Border.all(width: 1, color: Color.fromARGB(255, 7, 223, 187),),
-            ),
-            child: Center(child: TextButton(onPressed: (){
-            }, child: Text('Continue',style: TextStyle(color: Colors.white),))),
-          ),
+             Padding(
+               padding: const EdgeInsets.only(left: 20),
+               child: Container(
+                           height: MediaQuery.sizeOf(context).height*0.055,
+                           width: MediaQuery.sizeOf(context).width*0.9,
+                           decoration: BoxDecoration(
+                color: primaryColor,
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(width: 1, color: primaryColor,),
+                           ),
+                           child: Center(child: TextButton(onPressed: (){
+                           }, child: Text('Continue',style: TextStyle(color: Colors.white),))),
+                         ),
+             ),
               ],
             ),
           ),
         ],
       ),
+       resizeToAvoidBottomInset: true,
     );
   }
 }

@@ -1,7 +1,10 @@
 import 'package:e_commerce/login_pages.dart/signin.dart';
+import 'package:e_commerce/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/home_pages.dart/dashboard.dart';
 import 'package:e_commerce/login_pages.dart/signup.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class RessetPassword2 extends StatefulWidget {
   const RessetPassword2({super.key});
@@ -11,7 +14,20 @@ class RessetPassword2 extends StatefulWidget {
 }
 
 class _RessetPassword2State extends State<RessetPassword2> {
+   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  Future<void>_signin()async{
+    try{
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email:_emailController.text, 
+        password:_passwordController.text,
+    );
+  }  catch (e){
+    print('Login failed');
+    }
+  }
   bool _ischecked=false;
+  bool _isobscured=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +46,7 @@ class _RessetPassword2State extends State<RessetPassword2> {
         padding: const EdgeInsets.only(left: 25),
         child: Column(
           children: [
-            Image.asset('assets/login picture.png', height: 250, width: 250,),
+            Image.asset('assets/ressetpassword2 picture.png', height: 250, width: 250,),
              SizedBox(height: 15,),
           Text('Enter new password to reset your Password', textAlign: TextAlign.center,),
            SizedBox(height: 25,),
@@ -38,34 +54,9 @@ class _RessetPassword2State extends State<RessetPassword2> {
             padding: const EdgeInsets.only(right: 200.0),
             child: Text('New Password'),
           ),
-          Container(
-          height: 40,
-          width: 305,
-          decoration: BoxDecoration(
-           border: Border.all(
-            color: Colors.black,
-            width: 1,
-           ), 
-           borderRadius: BorderRadius.circular(10),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 18, left: 25),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: '************',
-                border: InputBorder.none
-              ),
-            ),
-          ),
-          ),
-          SizedBox(height: 15,),
-          Padding(
-            padding: const EdgeInsets.only(right: 190.0),
-            child: Text('Confirm Password'),
-          ),
-          Container(
-          height: 40,
-          width: 305,
+         Container(
+         height: MediaQuery.sizeOf(context).height*0.053,
+            width: MediaQuery.sizeOf(context).width*0.9,
           decoration: BoxDecoration(
            border: Border.all(
             color: Colors.black,
@@ -81,7 +72,49 @@ class _RessetPassword2State extends State<RessetPassword2> {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 5),
                     child: TextField(
-                      obscureText: _ischecked,
+                      obscureText: !_isobscured,
+                      decoration: InputDecoration(
+                        hintText: '************',
+                        border: InputBorder.none, 
+                      ),
+                    ),
+                  ),
+                ),
+                               SizedBox(width: 100,),
+                    IconButton(onPressed: (){
+                      setState(() {
+                        _isobscured = !_isobscured;
+                      });
+                    }, icon: Icon(_isobscured? Icons.visibility_off : Icons.visibility)),
+              ],
+            ),
+          ),
+          ),
+          SizedBox(height: 15,),
+          Padding(
+            padding: const EdgeInsets.only(right: 190.0),
+            child: Text('Confirm Password'),
+          ),
+          Container(
+         height: MediaQuery.sizeOf(context).height*0.053,
+            width: MediaQuery.sizeOf(context).width*0.9,
+          decoration: BoxDecoration(
+           border: Border.all(
+            color: Colors.black,
+            width: 1,
+           ), 
+           borderRadius: BorderRadius.circular(10),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(top:1, left: 25),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 5),
+                    child: TextField(
+                       controller:_passwordController,
+                      obscureText: !_ischecked,
                       decoration: InputDecoration(
                         hintText: '************',
                         border: InputBorder.none, 
@@ -102,10 +135,10 @@ class _RessetPassword2State extends State<RessetPassword2> {
           
            SizedBox(height: 55,),
           Container(
-          height: 55,
-          width: 305,
+         height: MediaQuery.sizeOf(context).height*0.06,
+            width: MediaQuery.sizeOf(context).width*0.9,
           decoration: BoxDecoration(
-             color:Color.fromARGB(255, 38, 227, 199),
+             color:primaryColor,
              borderRadius: BorderRadius.circular(10),
            ), 
            child: Padding(
@@ -127,6 +160,7 @@ class _RessetPassword2State extends State<RessetPassword2> {
           ],
         ),
       ),
+       resizeToAvoidBottomInset: true,
     );
   }
 }

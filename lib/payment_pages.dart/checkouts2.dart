@@ -85,7 +85,7 @@ class _Checkouts2State extends State<Checkouts2> {
               ),
             ) ,
             SizedBox(height: MediaQuery.sizeOf(context).height*0.02,),
-            Text('Hide List', style: TextStyle(color: Color.fromARGB(255, 32, 230, 183)),),
+            Text('Hide List', style: TextStyle(color: primaryColor),),
              SizedBox(height: MediaQuery.sizeOf(context).height*0.025,),
              container3(text: 'Select the delivery option').build(context),
 
@@ -138,6 +138,7 @@ class _Checkouts2State extends State<Checkouts2> {
            ),
                    ],
       ),
+       resizeToAvoidBottomInset: true,
     );
   }
 }

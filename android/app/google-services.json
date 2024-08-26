@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "524506788721",
+    "project_id": "ecommerce-dbece",
+    "storage_bucket": "ecommerce-dbece.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524506788721:android:3501151e370854eda83cd0",
+        "android_client_info": {
+          "package_name": "com.example.e_commerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdhR9CAh3ezsE9Q4AaFBOknFNtbJhQqrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

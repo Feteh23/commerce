@@ -47,6 +47,7 @@ Account()
         ],
          
         ),
+         resizeToAvoidBottomInset: true,
     );
   }
 }

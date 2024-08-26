@@ -1,14 +1,50 @@
+import 'package:e_commerce/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/home_pages.dart/dashboard.dart';
 import 'package:e_commerce/login_pages.dart/signin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 class Signup extends StatefulWidget {
   const Signup({super.key});
 
   @override
   State<Signup> createState() => _SignupState();
 }
-bool _isobscured=false;
+
 class _SignupState extends State<Signup> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  Future<void>_signup()async{
+    setState(() {
+      _isloading = true;
+    });
+    final String email = _emailController.text;
+    final String password = _passwordController.text;
+    try{
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email:email ,
+        password:password,
+    );
+    print('login successful');
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('login successful',style: TextStyle(color: primaryColor),)),
+    );
+     Navigator.push(context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) => Dashboard(),
+                            ));
+  } on FirebaseAuthException  catch (e){
+        ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('login failed: ${e.message}',style: TextStyle(color: Colors.red),)),
+    );
+  }  
+   finally{
+    setState(() {
+      _isloading = false;
+    });
+   }
+  }
+  bool _isobscured=false;
+  bool _isloading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +61,7 @@ class _SignupState extends State<Signup> {
       ),
       body: Column(
         children: [
-           Image.asset('assets/login picture.png', height: 250, width: 250,),
+           Image.asset('assets/signup picture.png', height: 250, width: 250,),
           SizedBox(height: 30,),
           Padding(
             padding: const EdgeInsets.only(left:25 , right: 25),
@@ -49,8 +85,8 @@ class _SignupState extends State<Signup> {
                 child: Row(
                   children: [
                     Container(
-                      height: 20,
-                      width: 20,
+                     height: MediaQuery.sizeOf(context).height*0.02,
+            width: MediaQuery.sizeOf(context).width*0.05,
                       decoration: BoxDecoration(
                       color: Colors.black,
                       ),
@@ -79,8 +115,8 @@ class _SignupState extends State<Signup> {
           Padding(
             padding: const EdgeInsets.only(left:25 , right: 25),
             child: Container(
-              height: 35,
-              width: double.infinity,
+              height: MediaQuery.sizeOf(context).height*0.053,
+            width: MediaQuery.sizeOf(context).width*0.9,
               decoration: BoxDecoration(color: Colors.grey[200],
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
@@ -103,6 +139,7 @@ class _SignupState extends State<Signup> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 10),
                         child: TextField(
+                          controller:_emailController,
                           decoration: InputDecoration(
                             hintText: 'Email',
                             border: InputBorder.none
@@ -121,8 +158,8 @@ class _SignupState extends State<Signup> {
           Padding(
             padding: const EdgeInsets.only(left:25 , right: 25),
             child: Container(
-              height: 35,
-              width: double.infinity,
+              height: MediaQuery.sizeOf(context).height*0.053,
+            width: MediaQuery.sizeOf(context).width*0.9,
               decoration: BoxDecoration(color: Colors.grey[200],
               borderRadius: BorderRadius.circular(10),
               
@@ -164,8 +201,8 @@ class _SignupState extends State<Signup> {
           Padding(
             padding: const EdgeInsets.only(left:25 , right: 25),
             child: Container(
-              height: 35,
-              width: double.infinity,
+              height: MediaQuery.sizeOf(context).height*0.053,
+            width: MediaQuery.sizeOf(context).width*0.9,
               decoration: BoxDecoration(color: Colors.grey[200],
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
@@ -188,6 +225,8 @@ class _SignupState extends State<Signup> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 10),
                         child: TextField(
+                          controller:_passwordController,
+                          obscureText: !_isobscured,
                           decoration: InputDecoration(
                             hintText: 'Password',
                             border: InputBorder.none
@@ -208,17 +247,21 @@ class _SignupState extends State<Signup> {
             ),
           ),
        
-                      SizedBox( height: 40,),
+                     SizedBox( height: MediaQuery.sizeOf(context).height*0.04,),
+
+                      if(_isloading) 
+                      CircularProgressIndicator(color: primaryColor,),
+                      SizedBox( height: MediaQuery.sizeOf(context).height*0.04,),
           
           Padding(
             padding: const EdgeInsets.only(left: 25, right: 25),
             child: Container(
                    
-                    height: 40,
-                    width: double.infinity,
+                     height: MediaQuery.sizeOf(context).height*0.055,
+                     width: MediaQuery.sizeOf(context).width*0.9,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Color.fromARGB(255, 38, 227, 199),
+                      color: primaryColor,
                       boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.3),
@@ -229,18 +272,13 @@ class _SignupState extends State<Signup> {
                   )
                 ]
                     ),
-                     child:TextButton(onPressed: (){
-                            Navigator.push(context,
-                            MaterialPageRoute(
-                              builder: (BuildContext context) => Dashboard(),
-                            ));
-                          },
+                     child:TextButton(onPressed: _signup,
                           child: Text('sign up', style: TextStyle(color:  Colors.white,),textAlign: TextAlign.right),
                           
                         ),
                   ),
           ),
-        SizedBox(height: 50,),
+        SizedBox(height: 45,),
        
         TextButton(onPressed: (){
                           Navigator.push(context,
@@ -253,7 +291,7 @@ class _SignupState extends State<Signup> {
                           child: Row(
                             children: [
                                Text("Don't have an account?", style: TextStyle(color: Colors.black),),
-                              Text('sign in', style: TextStyle(color:   Color.fromARGB(255, 38, 227, 199),),textAlign: TextAlign.right),
+                              Text('sign in', style: TextStyle(color: primaryColor,),textAlign: TextAlign.right),
                             ],
                           ),
                         ),
@@ -261,7 +299,7 @@ class _SignupState extends State<Signup> {
                       ),
         ],
       ),
-
+      resizeToAvoidBottomInset: true,
       );
     
   }

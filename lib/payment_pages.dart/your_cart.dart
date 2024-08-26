@@ -59,46 +59,12 @@ class _your_cartState extends State<your_cart> {
               thickness: 1, 
              color: Colors.grey[200],
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      IconButton(onPressed: (){
-                        setState(() {
-                          _ischecked = !_ischecked;
-                        });
-                      }, icon:Icon(_ischecked? Icons.check_box : Icons.check_box_outline_blank, color: _ischecked? Color.fromARGB(255, 4, 218, 182): Colors.grey, size: 30,)),
-                      container1(logo: 'assets/white head phone.jpg', text: 'Variant: Grey', word: 'Air pods max by Apple', text2: '\$1999,9').build(context),
-                    ],
-                  ),
-                  SizedBox(height: MediaQuery.sizeOf(context).width*0.06,),
-                   Row(
-                    children: [
-                      IconButton(onPressed: (){
-                        setState(() {
-                          _istouched = !_istouched;
-                        });
-                      }, icon:Icon(_istouched? Icons.check_box : Icons.check_box_outline_blank, color: _istouched? Color.fromARGB(255, 4, 218, 182): Colors.grey, size: 30,)),
-                      container1(logo: 'assets/tv.jpg', text: 'Variant: Grey', word: 'Air pods max by Apple', text2: '\$1999,9').build(context),
-                    ],
-                  ),
-                  SizedBox(height: MediaQuery.sizeOf(context).width*0.06,),
-                   Row(
-                    children: [
-                      IconButton(onPressed: (){
-                        setState(() {
-                          _isfelt = !_isfelt;
-                        });
-                      }, icon:Icon(_isfelt? Icons.check_box : Icons.check_box_outline_blank, color: _isfelt? Color.fromARGB(255, 4, 218, 182): Colors.grey, size: 30,)),
-                      container1(logo: 'assets/brown head phone.jpg', text: 'Variant: Grey', word: 'Air pods max by Apple', text2: '\$1999,9').build(context),
-                    ],
-                  ),
-                ],
-              ),
-            ) ,
-             SizedBox(height: MediaQuery.sizeOf(context).height*0.3,),
+ Checkcontainers(logo: 'assets/white head phone.jpg', text: 'Air pods max by apple', word:'variant: Grey', text2:'\$1999,99'),
+            SizedBox(height: MediaQuery.sizeOf(context).width*0.05,),
+            Checkcontainers(logo: 'assets/tv.jpg', text: 'Monitor LG 22" inc 4k 120Fps', word:'variant:120Fps', text2:'\$299,99'),
+            SizedBox(height: MediaQuery.sizeOf(context).width*0.05,),
+            Checkcontainers(logo: 'assets/brown head phone.jpg', text: 'Earphones for monitor', word:'variant: Combo', text2:'\$199,99'),
+             SizedBox(height: MediaQuery.sizeOf(context).height*0.25,),
                    Divider(
               thickness: 1, 
              color: Colors.grey[200],
@@ -108,7 +74,7 @@ class _your_cartState extends State<your_cart> {
               child: Row(
                 children: [
                   Text('Totals'),
-                   SizedBox(width: MediaQuery.sizeOf(context).height*0.32,),
+                   SizedBox(width: MediaQuery.sizeOf(context).height*0.12,),
                     Text('\$00,0'),
                 ],
               ),
@@ -128,6 +94,7 @@ class _your_cartState extends State<your_cart> {
           ),
         ],
       ),
+       resizeToAvoidBottomInset: true,
     );
   }
 }

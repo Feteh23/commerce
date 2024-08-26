@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:e_commerce/resources.dart';
-import 'package:e_commerce/payment_pages.dart/checkouts2.dart';
+import 'package:e_commerce/payment_pages.dart/checkouts3.dart';
 class Checkouts extends StatefulWidget {
   const Checkouts({super.key});
 
@@ -83,7 +83,7 @@ class _CheckoutsState extends State<Checkouts> {
               ),
             ) ,
             SizedBox(height: MediaQuery.sizeOf(context).height*0.02,),
-            Text('Hide List', style: TextStyle(color: Color.fromARGB(255, 32, 230, 183)),),
+            Text('Hide List', style: TextStyle(color: primaryColor),),
              SizedBox(height: MediaQuery.sizeOf(context).height*0.025,),
              container3(text: 'Select the delivery option').build(context),
 
@@ -131,18 +131,18 @@ class _CheckoutsState extends State<Checkouts> {
             height: MediaQuery.sizeOf(context).height*0.055,
             width: MediaQuery.sizeOf(context).width*0.9,
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 7, 223, 187),
+              color: primaryColor,
               borderRadius: BorderRadius.circular(5),
-              border: Border.all(width: 1, color: Color.fromARGB(255, 7, 223, 187),),
+              border: Border.all(width: 1, color: primaryColor),
             ),
             child: Center(child: TextButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=> Checkouts2()));
+              Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=> Checkouts3()));
             }, child: Text('Select payment method',style: TextStyle(color: Colors.white),))),
           ),
         ],
       ),
  
- 
+     resizeToAvoidBottomInset: true,
     );
   }
 }
