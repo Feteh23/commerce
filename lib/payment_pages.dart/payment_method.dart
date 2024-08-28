@@ -1,7 +1,5 @@
 import 'package:e_commerce/resources.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 
 class Payment_Method extends StatefulWidget {
