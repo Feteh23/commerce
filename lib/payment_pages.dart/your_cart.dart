@@ -1,7 +1,6 @@
 import 'package:e_commerce/payment_pages.dart/your_cart2.dart';
 import 'package:e_commerce/resources.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class your_cart extends StatefulWidget {
   const your_cart({super.key});

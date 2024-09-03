@@ -1,11 +1,13 @@
 import 'package:e_commerce/resources.dart';
 import 'package:flutter/material.dart';
-
+import 'package:e_commerce/login_pages.dart/authservice.dart';
+import 'package:provider/provider.dart';
 class History extends StatelessWidget {
   const History({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
     return Scaffold(
 
       appBar: AppBar(
@@ -124,7 +126,10 @@ class History extends StatelessWidget {
                       border: Border.all(width: 1, color: Colors.grey),
                       borderRadius: BorderRadius.circular(4),
                     ),
-                    child: TextButton(onPressed: (){}, child: Text('Follow', style: TextStyle(color: Colors.black, fontSize: 14),)),
+                    child: TextButton(onPressed: () async {
+              await authService.signOut();
+            },
+                     child: Text('Logout', style: TextStyle(color: Colors.black, fontSize: 14),)),
                    ),
                   ],
                 ),

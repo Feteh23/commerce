@@ -6,6 +6,8 @@ import 'package:e_commerce/login_pages.dart/ressetpassword.dart';
 import 'package:e_commerce/home_pages.dart/dashboard.dart';
 import 'package:e_commerce/login_pages.dart/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:e_commerce/login_pages.dart/authservice.dart';
+import 'package:provider/provider.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -35,7 +37,7 @@ class _SignInState extends State<SignIn> {
     );
       print('login successful');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('login successful: $e',style: TextStyle(color: primaryColor),)),
+        SnackBar(content: Text('login successful: ${e}',style: TextStyle(color: primaryColor),)),
       );
        Navigator.push(context,
                             MaterialPageRoute(
@@ -60,6 +62,7 @@ class _SignInState extends State<SignIn> {
   bool _isloading=false;
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
     return Scaffold(
        appBar: AppBar(
         toolbarHeight: 70,
@@ -203,20 +206,21 @@ class _SignInState extends State<SignIn> {
                 ]
                         
                       ),
-                       child:TextButton(onPressed: _login,
+                       child:TextButton(onPressed: () async {
+                await authService.signIn(
+                  _emailController.text,
+                  _passwordController.text,
+                );
+              },
                             child: Text('sign in', style: TextStyle(color:  Colors.white,),textAlign: TextAlign.right),
                             
                           ),
                     ),
             SizedBox(height: MediaQuery.sizeOf(context).height*0.07,),
           
-            TextButton(onPressed: (){
-                              Navigator.push(context,
-                              MaterialPageRoute(
-                                builder: (BuildContext context) => Signup(),
-                              ));
-                            },
-                            child: Padding(
+            TextButton(onPressed:(){
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=> Signup()));
+               } ,  child: Padding(
                               padding: const EdgeInsets.only(left: 70),
                               child: Row(
                                 children: [

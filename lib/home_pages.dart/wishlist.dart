@@ -1,8 +1,7 @@
 import 'package:e_commerce/payment_pages.dart/search.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/resources.dart';
-import 'package:flutter/widgets.dart';
+
 
 class Wishlist extends StatelessWidget {
   const Wishlist({super.key});
